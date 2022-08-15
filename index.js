@@ -1,43 +1,11 @@
-/*
-
-a Pen by DIACO : twitter.com/Diaco_ml  ||  codepen.io/MAW
-
-powered by GSAP : https://www.greensock.com/
-
-*/
-
-TweenLite.set("#container",{perspective:600})
-
-TweenLite.set("img",{xPercent:"-50%",yPercent:"-50%"})
-
-var total = 30;
-
-var warp = document.getElementById("container"),	w = window.innerWidth , h = window.innerHeight; 
-
- for (i=0; i<total; i++){ 
-
-   var Div = document.createElement('div');
-
-   TweenLite.set(Div,{attr:{class:'dot'},x:R(0,w),y:R(-200,-150),z:R(-200,200)});
-
-   warp.appendChild(Div);
-
-   animm(Div);
-
- }
-
- 
-
- function animm(elm){   
-
-   TweenMax.to(elm,R(6,15),{y:h+100,ease:Linear.easeNone,repeat:-1,delay:-15});
-
-   TweenMax.to(elm,R(4,8),{x:'+=100',rotationZ:R(0,180),repeat:-1,yoyo:true,ease:Sine.easeInOut});
-
-   TweenMax.to(elm,R(2,8),{rotationX:R(0,360),rotationY:R(0,360),repeat:-1,yoyo:true,ease:Sine.easeInOut,delay:-5});
-
- };
-
-function R(min,max) {return min+Math.random()*(max-min)};
-
-// a Pen by DIACO : twitter.com/Diaco_ml  ||  codepen.io/MAW
+var snowsrc="https://cdn.prinsh.com/NathanPrinsley-effect/images/snow.gif";var no=20;var hidesnowtime="0";var snowdistance="pageheight";var ie4up=(document.all)?1:0;var ns6up=(document.getElementById&&!document.all)?1:0;function iecompattest(){return(document.compatMode&&document.compatMode!="BackCompat")?document.documentElement:document.body}
+var dx,xp,yp;var am,stx,sty;var i,doc_width=800,doc_height=400;if(ns6up){doc_width=self.innerWidth;doc_height=self.innerHeight;}else if(ie4up){doc_width=iecompattest().clientWidth;doc_height=iecompattest().clientHeight;}
+dx=new Array();xp=new Array();yp=new Array();am=new Array();stx=new Array();sty=new Array();snowsrc=(snowsrc.indexOf("dynamicdrive.com")!=-1)?"snow.gif":snowsrc
+for(i=0;i<no;++i){dx[i]=0;xp[i]=Math.random()*(doc_width-50);yp[i]=Math.random()*doc_height;am[i]=Math.random()*20;stx[i]=0.02+Math.random()/10;sty[i]=0.7+Math.random();if(ie4up||ns6up){if(i==0){document.write("<div id=\"dot"+i+"\" style=\"POSITION: absolute; Z-INDEX: "+i+"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><a href=\"http://wpplugins.info\"><img src="+snowsrc+" border=\"0\"><\/a><\/div>");}else{document.write("<div id=\"dot"+i+"\" style=\"POSITION: absolute; Z-INDEX: "+i+"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><img src="+snowsrc+" border=\"0\"><\/div>");}}}
+function snowIE_NS6(){doc_width=ns6up?window.innerWidth-10:iecompattest().clientWidth-10;doc_height=(window.innerHeight&&snowdistance=="windowheight")?window.innerHeight:(ie4up&&snowdistance=="windowheight")?iecompattest().clientHeight:(ie4up&&!window.opera&&snowdistance=="pageheight")?iecompattest().scrollHeight:iecompattest().offsetHeight;for(i=0;i<no;++i){yp[i]+=sty[i];if(yp[i]>doc_height-50){xp[i]=Math.random()*(doc_width-am[i]-30);yp[i]=0;stx[i]=0.02+Math.random()/10;sty[i]=0.7+Math.random();}
+dx[i]+=stx[i];document.getElementById("dot"+i).style.top=yp[i]+"px";document.getElementById("dot"+i).style.left=xp[i]+am[i]*Math.sin(dx[i])+"px";}
+snowtimer=setTimeout("snowIE_NS6()",10);}
+function hidesnow(){if(window.snowtimer)clearTimeout(snowtimer)
+for(i=0;i<no;i++)document.getElementById("dot"+i).style.visibility="hidden"}
+if(ie4up||ns6up){snowIE_NS6();if(hidesnowtime>0)
+setTimeout("hidesnow()",hidesnowtime*1000)}
